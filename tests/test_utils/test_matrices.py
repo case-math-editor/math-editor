@@ -8,6 +8,8 @@ TEST_IS_PRESENT_IN_MATRIX_DATA = (
     ([[1]], 1, True),
     ([[1]], 10, False),
     ([[1]], -1, False),
+    ([[1, 3], [4, 5]], 5, True),
+    ([[1, 3], [4, 5]], 10, False),
 )
 
 
