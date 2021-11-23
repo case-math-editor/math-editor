@@ -45,7 +45,7 @@
      <verstretch>0</verstretch>
     </sizepolicy>
    </property>
-   <layout class="QGridLayout" name="gridLayout" columnstretch="1,2">
+   <layout class="QGridLayout" name="gridLayout" columnstretch="0,0">
     <item row="0" column="0">
      <widget class="QTabWidget" name="tabWidget">
       <property name="sizePolicy">
@@ -60,11 +60,14 @@
         <height>70</height>
        </size>
       </property>
+      <property name="whatsThis">
+       <string>\beta</string>
+      </property>
       <property name="styleSheet">
        <string notr="true">background-color: rgb(255, 255, 255);</string>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -77,6 +80,12 @@
            <widget class="QPushButton" name="alphaButton">
             <property name="enabled">
              <bool>true</bool>
+            </property>
+            <property name="statusTip">
+             <string/>
+            </property>
+            <property name="whatsThis">
+             <string>\alpha</string>
             </property>
             <property name="text">
              <string/>
@@ -91,10 +100,16 @@
               <height>9</height>
              </size>
             </property>
+            <attribute name="buttonGroup">
+             <string notr="true">symbolButton</string>
+            </attribute>
            </widget>
           </item>
           <item>
            <widget class="QPushButton" name="betaButton">
+            <property name="whatsThis">
+             <string>\beta</string>
+            </property>
             <property name="text">
              <string/>
             </property>
@@ -108,10 +123,16 @@
               <height>15</height>
              </size>
             </property>
+            <attribute name="buttonGroup">
+             <string notr="true">symbolButton</string>
+            </attribute>
            </widget>
           </item>
           <item>
            <widget class="QPushButton" name="deltaButton">
+            <property name="whatsThis">
+             <string>\delta</string>
+            </property>
             <property name="text">
              <string/>
             </property>
@@ -125,10 +146,16 @@
               <height>15</height>
              </size>
             </property>
+            <attribute name="buttonGroup">
+             <string notr="true">symbolButton</string>
+            </attribute>
            </widget>
           </item>
           <item>
            <widget class="QPushButton" name="lambdaButton">
+            <property name="whatsThis">
+             <string>\lambda</string>
+            </property>
             <property name="styleSheet">
              <string notr="true">align-items: center</string>
             </property>
@@ -145,10 +172,16 @@
               <height>12</height>
              </size>
             </property>
+            <attribute name="buttonGroup">
+             <string notr="true">symbolButton</string>
+            </attribute>
            </widget>
           </item>
           <item>
            <widget class="QPushButton" name="thetaButton">
+            <property name="whatsThis">
+             <string>\theta</string>
+            </property>
             <property name="text">
              <string/>
             </property>
@@ -162,10 +195,16 @@
               <height>15</height>
              </size>
             </property>
+            <attribute name="buttonGroup">
+             <string notr="true">symbolButton</string>
+            </attribute>
            </widget>
           </item>
           <item>
            <widget class="QPushButton" name="gammaButton">
+            <property name="whatsThis">
+             <string>\gamma</string>
+            </property>
             <property name="text">
              <string/>
             </property>
@@ -179,6 +218,9 @@
               <height>15</height>
              </size>
             </property>
+            <attribute name="buttonGroup">
+             <string notr="true">symbolButton</string>
+            </attribute>
            </widget>
           </item>
          </layout>
@@ -187,30 +229,54 @@
       </widget>
       <widget class="QWidget" name="tab_2">
        <attribute name="title">
-        <string>Операторы</string>
+        <string>Операции</string>
        </attribute>
        <layout class="QHBoxLayout" name="horizontalLayout_5">
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_4">
           <item>
            <widget class="QPushButton" name="integralButton">
-            <property name="text">
-             <string>PushButton</string>
+            <property name="whatsThis">
+             <string>\int_{a}^{b} x \,dx</string>
             </property>
+            <property name="text">
+             <string>Интеграл</string>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>30</width>
+              <height>16</height>
+             </size>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">symbolButton</string>
+            </attribute>
            </widget>
           </item>
           <item>
            <widget class="QPushButton" name="limitButton">
-            <property name="text">
-             <string>PushButton</string>
+            <property name="whatsThis">
+             <string>\lim_{x\to\infty} f(x)</string>
             </property>
+            <property name="text">
+             <string>Предел</string>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">symbolButton</string>
+            </attribute>
            </widget>
           </item>
           <item>
            <widget class="QPushButton" name="matrixButton">
-            <property name="text">
-             <string>PushButton</string>
+            <property name="whatsThis">
+             <string>\begin{bmatrix}1 &amp; 2 &amp; 3\\a &amp; b &amp; c\end{bmatrix}</string>
             </property>
+            <property name="text">
+             <string>Матрица</string>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">symbolButton</string>
+            </attribute>
            </widget>
           </item>
          </layout>
@@ -227,6 +293,11 @@
         <verstretch>0</verstretch>
        </sizepolicy>
       </property>
+      <property name="font">
+       <font>
+        <family>Times New Roman</family>
+       </font>
+      </property>
       <property name="styleSheet">
        <string notr="true">background-color: rgb(255, 255, 255);</string>
       </property>
@@ -236,7 +307,7 @@
       <property name="frameShadow">
        <enum>QFrame::Raised</enum>
       </property>
-      <layout class="QVBoxLayout" name="verticalLayout_3" stretch=""/>
+      <layout class="QVBoxLayout" name="verticalLayout_3"/>
      </widget>
     </item>
     <item row="1" column="0">
@@ -375,7 +446,7 @@ border-radius: 10px;
         </layout>
        </item>
        <item>
-        <widget class="QPlainTextEdit" name="textEdit">
+        <widget class="QPlainTextEdit" name="textBox">
          <property name="plainText">
           <string>y=\frac{1}{\sqrt{x}}</string>
          </property>
@@ -509,4 +580,7 @@ border-radius: 10px;
  </widget>
  <resources/>
  <connections/>
+ <buttongroups>
+  <buttongroup name="symbolButton"/>
+ </buttongroups>
 </ui>
