@@ -116,10 +116,10 @@ class AppWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.file_path = path
             self.__save_txt(self.file_path)
 
-    @staticmethod
-    def __save_txt(path):
+    def __save_txt(self, path):
         with open(path, 'w') as f:
-            f.write(path)
+            self.text = self.textBox.toPlainText()
+            f.write(self.text)
 
     def undo_text(self):
         self.textBox.undo()
