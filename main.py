@@ -11,6 +11,7 @@ mpl.use("Qt5Agg")
 mpl.rcParams['text.usetex'] = True
 mpl.rcParams['text.latex.preamble'] = r'\usepackage{{amsmath}}'
 
+
 # корректная отрисовка на мониторах с высоким разрешением
 # if hasattr(QtCore.Qt, 'AA_EnableHighDpiScaling'):
 #     QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling, True)
@@ -48,9 +49,8 @@ class AppWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.textBox.moveCursor(QtGui.QTextCursor.End)
         self.textBox.setFocus()
 
-        # Получение текста из textBox
         self.text = self.textBox.toPlainText()
-        # self.text_cache = [self.text]
+        self.file_path = None
 
         # Отрисовка matplotlib в приложении
         self.canvas = MplCanvas(self)
@@ -60,19 +60,33 @@ class AppWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.canvas.draw_text(self.text)
 
         # Создание сигналов
-        self.showButton.clicked.connect(self.show_btn_clicked)
-        self.clear_textButton.clicked.connect(self.clear_text_btn_clicked)
+        self.showButton.clicked.connect(self.show_latex)
+        self.clear_textButton.clicked.connect(self.clear_text)
         self.symbolButton.buttonClicked.connect(self.btn_group_clicked)
         self.textBox.installEventFilter(self)
+        self.actionOpen.triggered.connect(self.open_file)
+        self.saveButton.clicked.connect(self.save)
+        self.actionSave.triggered.connect(self.save)
+        self.actionSaveAs.triggered.connect(self.save_as)
+        self.actionNew.triggered.connect(self.new_file)
+        self.actionExit.triggered.connect(self.close)
+        self.redoButton.clicked.connect(self.redo_text)
+        self.undoButton.clicked.connect(self.undo_text)
+        self.actionRedo.triggered.connect(self.redo_text)
+        self.actionUndo.triggered.connect(self.undo_text)
 
     # Отрисовка latex
-    def show_btn_clicked(self):
-        self.text = self.textBox.toPlainText()
-        self.canvas.draw_text(self.text)
+    def show_latex(self):
+        try:
+            self.text = self.textBox.toPlainText()
+            self.canvas.draw_text(self.text)
+        except RuntimeError as e:
+            QtWidgets.QMessageBox.about(self, "Ошибка", "Введите корректную latex последовательность")
 
     # Очистка textBox
-    def clear_text_btn_clicked(self):
+    def clear_text(self):
         self.textBox.clear()
+        self.text = self.textBox.toPlainText()
 
     # Добавление символа/операции из меню
     def btn_group_clicked(self, btn):
@@ -87,12 +101,91 @@ class AppWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 return True
         return super().eventFilter(obj, event)
 
+    # Сохранить
+    def save(self):
+        if self.file_path is None:
+            self.save_as()
+        else:
+            self.__save_txt(self.file_path)
+
+    # Сохранить как
+    def save_as(self):
+        path, _ = QtWidgets.QFileDialog.getSaveFileName(self, "Сохранить файл",
+                                                        filter="Text files (*.txt)")
+        if path != '':
+            self.__save_txt(path)
+            self.file_path = path
+
+    def undo_text(self):
+        self.textBox.undo()
+
+    def redo_text(self):
+        self.textBox.redo()
+
+    # Диалоговое окно о сохранении файла
+    def __save_popup(self):
+        # Создание диалогового окна
+        box = QtWidgets.QMessageBox()
+        box.setIcon(QtWidgets.QMessageBox.Question)
+        box.setWindowTitle('Сохранение')
+        box.setText('Сохранить изменения?')
+        box.setStandardButtons(QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No | QtWidgets.QMessageBox.Cancel)
+        yes_btn = box.button(QtWidgets.QMessageBox.Yes)
+        yes_btn.setText('Да')
+        no_btn = box.button(QtWidgets.QMessageBox.No)
+        no_btn.setText('Нет')
+        cnl_btn = box.button(QtWidgets.QMessageBox.Cancel)
+        cnl_btn.setText('Отмена')
+        box.exec_()
+        # Обработка нажатий на кнопки
+        if box.clickedButton() == yes_btn:
+            self.save_as()
+            return ""
+        elif box.clickedButton() == no_btn:
+            return ""
+        elif box.clickedButton() == cnl_btn:
+            return "cancel"
+
+    # Открытие текстового файла
+    def open_file(self):
+        reply = None
+        if self.file_path is None and self.text != "":
+            reply = self.__save_popup()
+        if reply != "cancel":
+            path, _ = QtWidgets.QFileDialog.getOpenFileName()
+            if path != "":
+                self.file_path = path
+                with open(self.file_path, 'r') as f:
+                    self.textBox.insertPlainText(f.read())
+                    self.text = self.textBox.toPlainText()
+
+    # Создать новый файл
+    def new_file(self):
+        reply = None
+        if self.file_path is None and self.text != "":
+            reply = self.__save_popup()
+        if reply != "cancel":
+            self.clear_text()
+            self.show_latex()
+            self.file_path = None
+
+    # Закрытие приложения
+    def closeEvent(self, event):
+        reply = None
+        if self.file_path is None and self.text != "":
+            reply = self.__save_popup()
+        if reply == "":
+            event.accept()
+        else:
+            event.ignore()
+
 
 def main():
     app = QtWidgets.QApplication(sys.argv)  # Новый экземпляр QApplication
     window = AppWindow()  # Создаём объект класса AppWindow
     window.show()  # Показываем окно
     sys.exit(app.exec())  # и запускаем приложение
+
 
 if __name__ == '__main__':
     main()
