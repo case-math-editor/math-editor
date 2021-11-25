@@ -113,8 +113,13 @@ class AppWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         path, _ = QtWidgets.QFileDialog.getSaveFileName(self, "Сохранить файл",
                                                         filter="Text files (*.txt)")
         if path != '':
-            self.__save_txt(path)
             self.file_path = path
+            self.__save_txt(self.file_path)
+
+    @staticmethod
+    def __save_txt(path):
+        with open(path, 'w') as f:
+            f.write(path)
 
     def undo_text(self):
         self.textBox.undo()
@@ -174,10 +179,10 @@ class AppWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         reply = None
         if self.file_path is None and self.text != "":
             reply = self.__save_popup()
-        if reply == "":
-            event.accept()
-        else:
+        if reply == "cancel":
             event.ignore()
+        else:
+            event.accept()
 
 
 def main():
