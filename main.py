@@ -29,7 +29,7 @@ class MplCanvas(FigureCanvasQTAgg):
         self.axes.patch.set_alpha(0)
         super(MplCanvas, self).__init__(fig)
 
-    def draw_text(self, text):
+    def draw_text(self, text, fontsize):
         self.axes.clear()
         self.axes.axis("off")
         if text != "":
@@ -37,7 +37,7 @@ class MplCanvas(FigureCanvasQTAgg):
             self.axes.text(0.5, 0.5, f"${text}$",
                            horizontalalignment='center',
                            verticalalignment='center',
-                           fontsize=30, color='black')
+                           fontsize=fontsize, color='black')
         self.draw()
 
 
@@ -81,7 +81,7 @@ class AppWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         toolbar = NavigationToolbar(self.canvas, self)
         self.verticalLayout_3.addWidget(toolbar)
         self.verticalLayout_3.addWidget(self.canvas)
-        self.canvas.draw_text(self.text)
+        self.canvas.draw_text(self.text, self.fontsizeBox.value())
 
         # Создание сигналов
         self.showButton.clicked.connect(self.show_latex)
@@ -103,7 +103,7 @@ class AppWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     # Отрисовка latex
     def show_latex(self):
         try:
-            self.canvas.draw_text(self.text)
+            self.canvas.draw_text(self.text, self.fontsizeBox.value())
         except RuntimeError as e:
             QtWidgets.QMessageBox.about(self, "Ошибка", "Введите корректную latex последовательность")
 
