@@ -277,7 +277,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "Equation Editor"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Equation Editor*"))
         self.tabWidget.setWhatsThis(_translate("MainWindow", "\\beta"))
         self.alphaButton.setWhatsThis(_translate("MainWindow", "\\alpha"))
         self.betaButton.setWhatsThis(_translate("MainWindow", "\\beta"))

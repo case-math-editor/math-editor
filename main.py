@@ -1,8 +1,9 @@
 import sys
+from functools import wraps
 
 from PyQt5 import QtWidgets, QtGui, QtCore
 import matplotlib as mpl
-from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg, NavigationToolbar2QT as NavigationToolbar
+from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg, NavigationToolbar2QT
 from matplotlib.figure import Figure
 
 from design import Ui_MainWindow
@@ -40,6 +41,22 @@ class MplCanvas(FigureCanvasQTAgg):
         self.draw()
 
 
+class SaveMessageBox(QtWidgets.QMessageBox):
+    def __init__(self):
+        super().__init__()
+        super().setIcon(QtWidgets.QMessageBox.Question)
+        super().setWindowTitle('Сохранение')
+        super().setText('Сохранить изменения?')
+        super().setStandardButtons(QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No | QtWidgets.QMessageBox.Cancel)
+        self.yes_btn = self.button(QtWidgets.QMessageBox.Yes)
+        self.yes_btn.setText('Да')
+        self.no_btn = self.button(QtWidgets.QMessageBox.No)
+        self.no_btn.setText('Нет')
+        self.cnl_btn = self.button(QtWidgets.QMessageBox.Cancel)
+        self.cnl_btn.setText('Отмена')
+        self.exec_()
+
+
 class AppWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self):
         # Это здесь нужно для доступа к переменным, методам
@@ -50,11 +67,13 @@ class AppWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.textBox.setFocus()
 
         self.text = self.textBox.toPlainText()
+        self.saved_text = None
+        self.is_saved = False
         self.file_path = None
 
         # Отрисовка matplotlib в приложении
         self.canvas = MplCanvas(self)
-        toolbar = NavigationToolbar(self.canvas, self)
+        toolbar = NavigationToolbar2QT(self.canvas, self)
         self.verticalLayout_3.addWidget(toolbar)
         self.verticalLayout_3.addWidget(self.canvas)
         self.canvas.draw_text(self.text)
@@ -74,19 +93,29 @@ class AppWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         self.undoButton.clicked.connect(self.undo_text)
         self.actionRedo.triggered.connect(self.redo_text)
         self.actionUndo.triggered.connect(self.undo_text)
+        self.textBox.textChanged.connect(self.text_changed)
 
     # Отрисовка latex
     def show_latex(self):
         try:
-            self.text = self.textBox.toPlainText()
             self.canvas.draw_text(self.text)
         except RuntimeError as e:
             QtWidgets.QMessageBox.about(self, "Ошибка", "Введите корректную latex последовательность")
 
     # Очистка textBox
     def clear_text(self):
-        self.textBox.clear()
-        self.text = self.textBox.toPlainText()
+        self.textBox.selectAll()
+        self.textBox.textCursor().removeSelectedText()
+
+    # Изменение текста в textBox
+    def text_changed(self):
+        if self.textBox.toPlainText() != self.saved_text:
+            self.setWindowTitle("Equation Editor*")
+            self.is_saved = False
+            self.text = self.textBox.toPlainText()
+        else:
+            self.setWindowTitle("Equation Editor")
+            self.is_saved = True
 
     # Добавление символа/операции из меню
     def btn_group_clicked(self, btn):
@@ -113,13 +142,15 @@ class AppWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         path, _ = QtWidgets.QFileDialog.getSaveFileName(self, "Сохранить файл",
                                                         filter="Text files (*.txt)")
         if path != '':
-            self.file_path = path
-            self.__save_txt(self.file_path)
+            self.__save_txt(path)
 
     def __save_txt(self, path):
         with open(path, 'w') as f:
-            self.text = self.textBox.toPlainText()
             f.write(self.text)
+        self.setWindowTitle("Equation Editor")
+        self.file_path = path
+        self.is_saved = True
+        self.saved_text = self.text
 
     def undo_text(self):
         self.textBox.undo()
@@ -129,60 +160,41 @@ class AppWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
     # Диалоговое окно о сохранении файла
     def __save_popup(self):
-        # Создание диалогового окна
-        box = QtWidgets.QMessageBox()
-        box.setIcon(QtWidgets.QMessageBox.Question)
-        box.setWindowTitle('Сохранение')
-        box.setText('Сохранить изменения?')
-        box.setStandardButtons(QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No | QtWidgets.QMessageBox.Cancel)
-        yes_btn = box.button(QtWidgets.QMessageBox.Yes)
-        yes_btn.setText('Да')
-        no_btn = box.button(QtWidgets.QMessageBox.No)
-        no_btn.setText('Нет')
-        cnl_btn = box.button(QtWidgets.QMessageBox.Cancel)
-        cnl_btn.setText('Отмена')
-        box.exec_()
-        # Обработка нажатий на кнопки
-        if box.clickedButton() == yes_btn:
-            self.save_as()
-            return ""
-        elif box.clickedButton() == no_btn:
-            return ""
-        elif box.clickedButton() == cnl_btn:
-            return "cancel"
+        if not self.is_saved:
+            box = SaveMessageBox()
+            if box.clickedButton() == box.yes_btn:
+                self.save()
+            elif box.clickedButton() == box.cnl_btn:
+                return False
+        return True
 
     # Открытие текстового файла
     def open_file(self):
-        reply = None
-        if self.file_path is None and self.text != "":
-            reply = self.__save_popup()
-        if reply != "cancel":
+        reply = self.__save_popup()
+        if reply:
             path, _ = QtWidgets.QFileDialog.getOpenFileName()
             if path != "":
                 self.file_path = path
+                self.is_saved = True
                 with open(self.file_path, 'r') as f:
-                    self.textBox.insertPlainText(f.read())
-                    self.text = self.textBox.toPlainText()
+                    self.saved_text = f.read()
+                    self.clear_text()
+                    self.textBox.insertPlainText(self.saved_text)
 
     # Создать новый файл
     def new_file(self):
-        reply = None
-        if self.file_path is None and self.text != "":
-            reply = self.__save_popup()
-        if reply != "cancel":
+        reply = self.__save_popup()
+        if reply:
             self.clear_text()
             self.show_latex()
             self.file_path = None
+            self.is_saved = False
 
     # Закрытие приложения
     def closeEvent(self, event):
-        reply = None
-        if self.file_path is None and self.text != "":
-            reply = self.__save_popup()
-        if reply == "cancel":
+        reply = self.__save_popup()
+        if not reply:
             event.ignore()
-        else:
-            event.accept()
 
 
 def main():
