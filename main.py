@@ -41,6 +41,11 @@ class MplCanvas(FigureCanvasQTAgg):
         self.draw()
 
 
+class NavigationToolbar(NavigationToolbar2QT):
+    toolitems = [t for t in NavigationToolbar2QT.toolitems if
+                 t[0] in ('Home', 'Back', 'Forward', 'Pan', 'Save')]
+
+
 class SaveMessageBox(QtWidgets.QMessageBox):
     def __init__(self):
         super().__init__()
@@ -73,7 +78,7 @@ class AppWindow(QtWidgets.QMainWindow, Ui_MainWindow):
 
         # Отрисовка matplotlib в приложении
         self.canvas = MplCanvas(self)
-        toolbar = NavigationToolbar2QT(self.canvas, self)
+        toolbar = NavigationToolbar(self.canvas, self)
         self.verticalLayout_3.addWidget(toolbar)
         self.verticalLayout_3.addWidget(self.canvas)
         self.canvas.draw_text(self.text)
