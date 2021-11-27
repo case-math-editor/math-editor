@@ -46,245 +46,6 @@
     </sizepolicy>
    </property>
    <layout class="QGridLayout" name="gridLayout" columnstretch="0,0">
-    <item row="0" column="0">
-     <widget class="QTabWidget" name="tabWidget">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="minimumSize">
-       <size>
-        <width>199</width>
-        <height>70</height>
-       </size>
-      </property>
-      <property name="whatsThis">
-       <string>\beta</string>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(255, 255, 255);</string>
-      </property>
-      <property name="currentIndex">
-       <number>1</number>
-      </property>
-      <widget class="QWidget" name="tab">
-       <attribute name="title">
-        <string>Символы</string>
-       </attribute>
-       <layout class="QHBoxLayout" name="horizontalLayout_3">
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_2">
-          <item>
-           <widget class="QPushButton" name="alphaButton">
-            <property name="enabled">
-             <bool>true</bool>
-            </property>
-            <property name="statusTip">
-             <string/>
-            </property>
-            <property name="whatsThis">
-             <string>\alpha</string>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-            <property name="icon">
-             <iconset>
-              <normaloff>icons/symbols/alpha.PNG</normaloff>icons/symbols/alpha.PNG</iconset>
-            </property>
-            <property name="iconSize">
-             <size>
-              <width>9</width>
-              <height>9</height>
-             </size>
-            </property>
-            <attribute name="buttonGroup">
-             <string notr="true">symbolButton</string>
-            </attribute>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="betaButton">
-            <property name="whatsThis">
-             <string>\beta</string>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-            <property name="icon">
-             <iconset>
-              <normaloff>icons/symbols/beta.png</normaloff>icons/symbols/beta.png</iconset>
-            </property>
-            <property name="iconSize">
-             <size>
-              <width>15</width>
-              <height>15</height>
-             </size>
-            </property>
-            <attribute name="buttonGroup">
-             <string notr="true">symbolButton</string>
-            </attribute>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="deltaButton">
-            <property name="whatsThis">
-             <string>\delta</string>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-            <property name="icon">
-             <iconset>
-              <normaloff>icons/symbols/delta.PNG</normaloff>icons/symbols/delta.PNG</iconset>
-            </property>
-            <property name="iconSize">
-             <size>
-              <width>15</width>
-              <height>15</height>
-             </size>
-            </property>
-            <attribute name="buttonGroup">
-             <string notr="true">symbolButton</string>
-            </attribute>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="lambdaButton">
-            <property name="whatsThis">
-             <string>\lambda</string>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">align-items: center</string>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-            <property name="icon">
-             <iconset>
-              <normaloff>icons/symbols/lambda.PNG</normaloff>icons/symbols/lambda.PNG</iconset>
-            </property>
-            <property name="iconSize">
-             <size>
-              <width>12</width>
-              <height>12</height>
-             </size>
-            </property>
-            <attribute name="buttonGroup">
-             <string notr="true">symbolButton</string>
-            </attribute>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="thetaButton">
-            <property name="whatsThis">
-             <string>\theta</string>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-            <property name="icon">
-             <iconset>
-              <normaloff>icons/symbols/theta.png</normaloff>icons/symbols/theta.png</iconset>
-            </property>
-            <property name="iconSize">
-             <size>
-              <width>15</width>
-              <height>15</height>
-             </size>
-            </property>
-            <attribute name="buttonGroup">
-             <string notr="true">symbolButton</string>
-            </attribute>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="gammaButton">
-            <property name="whatsThis">
-             <string>\gamma</string>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-            <property name="icon">
-             <iconset>
-              <normaloff>icons/symbols/gamma.PNG</normaloff>icons/symbols/gamma.PNG</iconset>
-            </property>
-            <property name="iconSize">
-             <size>
-              <width>15</width>
-              <height>15</height>
-             </size>
-            </property>
-            <attribute name="buttonGroup">
-             <string notr="true">symbolButton</string>
-            </attribute>
-           </widget>
-          </item>
-         </layout>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="tab_2">
-       <attribute name="title">
-        <string>Операции</string>
-       </attribute>
-       <layout class="QHBoxLayout" name="horizontalLayout_5">
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_4">
-          <item>
-           <widget class="QPushButton" name="integralButton">
-            <property name="whatsThis">
-             <string>\int_{a}^{b} x \,dx</string>
-            </property>
-            <property name="text">
-             <string>Интеграл</string>
-            </property>
-            <property name="iconSize">
-             <size>
-              <width>30</width>
-              <height>16</height>
-             </size>
-            </property>
-            <attribute name="buttonGroup">
-             <string notr="true">symbolButton</string>
-            </attribute>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="limitButton">
-            <property name="whatsThis">
-             <string>\lim_{x\to\infty} f(x)</string>
-            </property>
-            <property name="text">
-             <string>Предел</string>
-            </property>
-            <attribute name="buttonGroup">
-             <string notr="true">symbolButton</string>
-            </attribute>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="matrixButton">
-            <property name="whatsThis">
-             <string>\begin{bmatrix}1 &amp; 2 &amp; 3\\a &amp; b &amp; c\end{bmatrix}</string>
-            </property>
-            <property name="text">
-             <string>Матрица</string>
-            </property>
-            <attribute name="buttonGroup">
-             <string notr="true">symbolButton</string>
-            </attribute>
-           </widget>
-          </item>
-         </layout>
-        </item>
-       </layout>
-      </widget>
-     </widget>
-    </item>
     <item row="0" column="1" rowspan="2">
      <widget class="QFrame" name="rightFrame">
       <property name="sizePolicy">
@@ -448,7 +209,7 @@ border-radius: 10px;
        <item>
         <widget class="QPlainTextEdit" name="textBox">
          <property name="plainText">
-          <string>y=\frac{1}{\sqrt{x}}</string>
+          <string>\\y=\frac{1}{\sqrt{x}}</string>
          </property>
         </widget>
        </item>
@@ -508,6 +269,484 @@ border-radius: 10px;
         </layout>
        </item>
       </layout>
+     </widget>
+    </item>
+    <item row="0" column="0">
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>199</width>
+        <height>70</height>
+       </size>
+      </property>
+      <property name="whatsThis">
+       <string>\beta</string>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="tab">
+       <attribute name="title">
+        <string>Символы</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_4">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <item>
+           <widget class="QPushButton" name="alphaButton">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="statusTip">
+             <string/>
+            </property>
+            <property name="whatsThis">
+             <string>\alpha</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset>
+              <normaloff>icons/symbols/alpha.PNG</normaloff>icons/symbols/alpha.PNG</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>9</width>
+              <height>9</height>
+             </size>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">symbolButton</string>
+            </attribute>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="betaButton">
+            <property name="whatsThis">
+             <string>\beta</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset>
+              <normaloff>icons/symbols/beta.png</normaloff>icons/symbols/beta.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>15</width>
+              <height>15</height>
+             </size>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">symbolButton</string>
+            </attribute>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="deltaButton">
+            <property name="whatsThis">
+             <string>\delta</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset>
+              <normaloff>icons/symbols/delta.PNG</normaloff>icons/symbols/delta.PNG</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>15</width>
+              <height>15</height>
+             </size>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">symbolButton</string>
+            </attribute>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="lambdaButton">
+            <property name="whatsThis">
+             <string>\lambda</string>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">align-items: center</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset>
+              <normaloff>icons/symbols/lambda.PNG</normaloff>icons/symbols/lambda.PNG</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>12</width>
+              <height>12</height>
+             </size>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">symbolButton</string>
+            </attribute>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="thetaButton">
+            <property name="whatsThis">
+             <string>\theta</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset>
+              <normaloff>icons/symbols/theta.png</normaloff>icons/symbols/theta.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>15</width>
+              <height>15</height>
+             </size>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">symbolButton</string>
+            </attribute>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="gammaButton">
+            <property name="whatsThis">
+             <string>\gamma</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset>
+              <normaloff>icons/symbols/gamma.PNG</normaloff>icons/symbols/gamma.PNG</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>15</width>
+              <height>15</height>
+             </size>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">symbolButton</string>
+            </attribute>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_3">
+          <item>
+           <widget class="QPushButton" name="alphaButton_2">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="statusTip">
+             <string/>
+            </property>
+            <property name="whatsThis">
+             <string>\pi</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset>
+              <normaloff>icons/symbols/pi.png</normaloff>icons/symbols/pi.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>9</width>
+              <height>9</height>
+             </size>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">symbolButton</string>
+            </attribute>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="alphaButton_3">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="statusTip">
+             <string/>
+            </property>
+            <property name="whatsThis">
+             <string>\omega</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset>
+              <normaloff>icons/symbols/omega.png</normaloff>icons/symbols/omega.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>11</width>
+              <height>12</height>
+             </size>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">symbolButton</string>
+            </attribute>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="alphaButton_4">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="statusTip">
+             <string/>
+            </property>
+            <property name="whatsThis">
+             <string>\mu</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset>
+              <normaloff>icons/symbols/mu.png</normaloff>icons/symbols/mu.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>15</width>
+              <height>15</height>
+             </size>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">symbolButton</string>
+            </attribute>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="alphaButton_5">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="statusTip">
+             <string/>
+            </property>
+            <property name="whatsThis">
+             <string>\phi</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset>
+              <normaloff>icons/symbols/phi.png</normaloff>icons/symbols/phi.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>14</width>
+              <height>14</height>
+             </size>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">symbolButton</string>
+            </attribute>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="alphaButton_6">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="statusTip">
+             <string/>
+            </property>
+            <property name="whatsThis">
+             <string>\varepsilon</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset>
+              <normaloff>icons/symbols/epsilon.png</normaloff>icons/symbols/epsilon.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>16</width>
+              <height>16</height>
+             </size>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">symbolButton</string>
+            </attribute>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="alphaButton_7">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="statusTip">
+             <string/>
+            </property>
+            <property name="whatsThis">
+             <string>\rho</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset>
+              <normaloff>icons/symbols/rho.png</normaloff>icons/symbols/rho.png</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>14</width>
+              <height>14</height>
+             </size>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">symbolButton</string>
+            </attribute>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_2">
+       <attribute name="title">
+        <string>Операции</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_4">
+          <item>
+           <widget class="QPushButton" name="integralButton">
+            <property name="whatsThis">
+             <string>\int_{a}^{b} x \,dx</string>
+            </property>
+            <property name="text">
+             <string>Интеграл</string>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>30</width>
+              <height>16</height>
+             </size>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">symbolButton</string>
+            </attribute>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="limitButton">
+            <property name="whatsThis">
+             <string>\lim_{x\to\infty} f(x)</string>
+            </property>
+            <property name="text">
+             <string>Предел</string>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">symbolButton</string>
+            </attribute>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="matrixButton">
+            <property name="whatsThis">
+             <string>\begin{bmatrix}1 &amp; 2 &amp; 3\\a &amp; b &amp; c\end{bmatrix}</string>
+            </property>
+            <property name="text">
+             <string>Матрица</string>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">symbolButton</string>
+            </attribute>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_5">
+          <item>
+           <widget class="QPushButton" name="integralButton_2">
+            <property name="whatsThis">
+             <string>\frac{a}{b}</string>
+            </property>
+            <property name="text">
+             <string>Дробь</string>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>30</width>
+              <height>16</height>
+             </size>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">symbolButton</string>
+            </attribute>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="integralButton_3">
+            <property name="whatsThis">
+             <string>\sum_{n=1}^{infty} 2^{-n} = 1</string>
+            </property>
+            <property name="text">
+             <string>Сумма</string>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>30</width>
+              <height>16</height>
+             </size>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">symbolButton</string>
+            </attribute>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="integralButton_4">
+            <property name="whatsThis">
+             <string>\log_b a</string>
+            </property>
+            <property name="text">
+             <string>Логарифм</string>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>30</width>
+              <height>16</height>
+             </size>
+            </property>
+            <attribute name="buttonGroup">
+             <string notr="true">symbolButton</string>
+            </attribute>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
      </widget>
     </item>
    </layout>
