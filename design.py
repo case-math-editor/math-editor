@@ -21,7 +21,7 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(MainWindow.sizePolicy().hasHeightForWidth())
         MainWindow.setSizePolicy(sizePolicy)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("icons/window.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("icons/window.ico"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         MainWindow.setWindowIcon(icon)
         MainWindow.setLayoutDirection(QtCore.Qt.LeftToRight)
         MainWindow.setStyleSheet("background-color: rgb(240,247,248);")
@@ -376,7 +376,7 @@ class Ui_MainWindow(object):
         self.menuBar.addAction(self.menuEdit.menuAction())
 
         self.retranslateUi(MainWindow)
-        self.tabWidget.setCurrentIndex(1)
+        self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -415,14 +415,9 @@ class Ui_MainWindow(object):
         self.menuFile.setTitle(_translate("MainWindow", "Файл"))
         self.menuEdit.setTitle(_translate("MainWindow", "Правка"))
         self.actionNew.setText(_translate("MainWindow", "Создать"))
-        self.actionNew.setShortcut(_translate("MainWindow", "Ctrl+N"))
         self.actionOpen.setText(_translate("MainWindow", "Открыть"))
-        self.actionOpen.setShortcut(_translate("MainWindow", "Ctrl+O"))
         self.actionSave.setText(_translate("MainWindow", "Сохранить"))
         self.actionSaveAs.setText(_translate("MainWindow", "Сохранить как"))
-        self.actionSaveAs.setShortcut(_translate("MainWindow", "Ctrl+S"))
         self.actionExit.setText(_translate("MainWindow", "Выход"))
         self.actionUndo.setText(_translate("MainWindow", "Отменить"))
-        self.actionUndo.setShortcut(_translate("MainWindow", "Ctrl+Z"))
         self.actionRedo.setText(_translate("MainWindow", "Повторить"))
-        self.actionRedo.setShortcut(_translate("MainWindow", "Ctrl+R"))

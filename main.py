@@ -1,17 +1,23 @@
 import sys
 from functools import wraps
 
+
 from PyQt5 import QtWidgets, QtGui, QtCore
+from PyQt5.QtWinExtras import QtWin
 import matplotlib as mpl
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg, NavigationToolbar2QT
 from matplotlib.figure import Figure
 
 from design import Ui_MainWindow
 
+# Отображение иконки в панели задач
+myappid = 'mycompany.myproduct.subproduct.version'
+QtWin.setCurrentProcessExplicitAppUserModelID(myappid)
+
+# Использование latex в matplotlib
 mpl.use("Qt5Agg")
 mpl.rcParams['text.usetex'] = True
 mpl.rcParams['text.latex.preamble'] = r'\usepackage{{amsmath}}'
-
 
 # корректная отрисовка на мониторах с высоким разрешением
 # if hasattr(QtCore.Qt, 'AA_EnableHighDpiScaling'):
@@ -105,6 +111,7 @@ class AppWindow(QtWidgets.QMainWindow, Ui_MainWindow):
         try:
             self.canvas.draw_text(self.text, self.fontsizeBox.value())
         except RuntimeError as e:
+            self.text = ""
             QtWidgets.QMessageBox.about(self, "Ошибка", "Введите корректную latex последовательность")
 
     # Очистка textBox
@@ -118,7 +125,9 @@ class AppWindow(QtWidgets.QMainWindow, Ui_MainWindow):
             self.setWindowTitle("Equation Editor*")
             self.is_saved = False
             self.text = self.textBox.toPlainText()
+
         else:
+            self.text = self.saved_text
             self.setWindowTitle("Equation Editor")
             self.is_saved = True
 
@@ -131,7 +140,9 @@ class AppWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def eventFilter(self, obj, event):
         if event.type() == QtCore.QEvent.KeyPress and obj is self.textBox:
             if event.key() == QtCore.Qt.Key_Return and self.textBox.hasFocus():
+                self.textBox.setTextColor(QtGui.QColor("#7b3f00"))
                 self.textBox.appendPlainText(r"\\")
+
                 return True
         return super().eventFilter(obj, event)
 
@@ -185,6 +196,7 @@ class AppWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                     self.saved_text = f.read()
                     self.clear_text()
                     self.textBox.insertPlainText(self.saved_text)
+                    self.text = self.saved_text
 
     # Создать новый файл
     def new_file(self):

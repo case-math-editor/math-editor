@@ -21,7 +21,7 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>icons/window.png</normaloff>icons/window.png</iconset>
+    <normaloff>icons/window.ico</normaloff>icons/window.ico</iconset>
   </property>
   <property name="layoutDirection">
    <enum>Qt::LeftToRight</enum>
@@ -332,7 +332,7 @@ border-radius: 10px;
        <string notr="true">background-color: rgb(255, 255, 255);</string>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -825,16 +825,10 @@ border-radius: 10px;
    <property name="text">
     <string>Создать</string>
    </property>
-   <property name="shortcut">
-    <string>Ctrl+N</string>
-   </property>
   </action>
   <action name="actionOpen">
    <property name="text">
     <string>Открыть</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+O</string>
    </property>
   </action>
   <action name="actionSave">
@@ -846,9 +840,6 @@ border-radius: 10px;
    <property name="text">
     <string>Сохранить как</string>
    </property>
-   <property name="shortcut">
-    <string>Ctrl+S</string>
-   </property>
   </action>
   <action name="actionExit">
    <property name="text">
@@ -859,16 +850,10 @@ border-radius: 10px;
    <property name="text">
     <string>Отменить</string>
    </property>
-   <property name="shortcut">
-    <string>Ctrl+Z</string>
-   </property>
   </action>
   <action name="actionRedo">
    <property name="text">
     <string>Повторить</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+R</string>
    </property>
   </action>
  </widget>
