@@ -118,6 +118,7 @@ class AppWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def clear_text(self):
         self.textBox.selectAll()
         self.textBox.textCursor().removeSelectedText()
+        self.textBox.appendPlainText(r"\\")
 
     # Изменение текста в textBox
     def text_changed(self):
@@ -140,7 +141,6 @@ class AppWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def eventFilter(self, obj, event):
         if event.type() == QtCore.QEvent.KeyPress and obj is self.textBox:
             if event.key() == QtCore.Qt.Key_Return and self.textBox.hasFocus():
-                self.textBox.setTextColor(QtGui.QColor("#7b3f00"))
                 self.textBox.appendPlainText(r"\\")
 
                 return True
